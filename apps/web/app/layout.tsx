@@ -1,19 +1,23 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import {
+  Atkinson_Hyperlegible_Mono,
+  Atkinson_Hyperlegible_Next,
+} from "next/font/google";
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
+const sans = Atkinson_Hyperlegible_Next({
+  subsets: ["latin"],
+  variable: "--font-atkinson",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
+const mono = Atkinson_Hyperlegible_Mono({
+  subsets: ["latin"],
+  variable: "--font-atkinson-mono",
 });
 
 export const metadata: Metadata = {
   title: "James Sheldon",
-  description: "James Sheldon, full-stack engineer specializing in React and TypeScript.",
+  description:
+    "James Sheldon, founding engineer and CTO. Verification-first engineering with AI agents.",
 };
 
 export default function RootLayout({
@@ -22,10 +26,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-      </body>
+    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }
