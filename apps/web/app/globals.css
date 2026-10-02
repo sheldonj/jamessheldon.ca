@@ -1,52 +1,92 @@
+/*
+ * James Sheldon design system: web theme (shadcn + Tailwind v4).
+ * Tokens copied from the design system's "Web: shadcn + Tailwind" section.
+ * Dark mode follows the OS by default; a `.dark` / `.light` class on <html> overrides it.
+ */
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --muted: #666666;
+  --background: #ffffff;  --foreground: #141722;
+  --card: #ffffff;        --card-foreground: #141722;
+  --popover: #ffffff;     --popover-foreground: #141722;
+  --primary: #0f6e66;     --primary-foreground: #ffffff;
+  --secondary: #f1f3f6;   --secondary-foreground: #23283a;
+  --muted: #f5f6f8;       --muted-foreground: #596073;
+  --accent: #e8f3f1;      --accent-foreground: #0f6e66;
+  --destructive: #b42318; --destructive-foreground: #ffffff;
+  --border: #e3e6ec; --input: #d5dae3; --ring: #0f6e66;
+  --rail: #cfe6e3;
+  --font-sans: var(--font-atkinson), "Atkinson Hyperlegible Next", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-atkinson-mono), "Atkinson Hyperlegible Mono", ui-monospace, monospace;
+  --radius: 0.25rem;
+  --letter-spacing: 0em;
+  color-scheme: light;
+}
+
+.dark {
+  --background: #0e1116;  --foreground: #e8eaef;
+  --card: #141820;        --card-foreground: #e8eaef;
+  --popover: #141820;     --popover-foreground: #e8eaef;
+  --primary: #3fb3a6;     --primary-foreground: #0e1116;
+  --secondary: #1b2029;   --secondary-foreground: #e8eaef;
+  --muted: #181c24;       --muted-foreground: #9aa1b3;
+  --accent: #12302d;      --accent-foreground: #a9ddd6;
+  --destructive: #f04438; --destructive-foreground: #ffffff;
+  --border: #252a33; --input: #2d333e; --ring: #3fb3a6;
+  --rail: #1f3b38;
+  color-scheme: dark;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --muted: #a1a1a1;
+  :root:not(.light) {
+    --background: #0e1116;  --foreground: #e8eaef;
+    --card: #141820;        --card-foreground: #e8eaef;
+    --popover: #141820;     --popover-foreground: #e8eaef;
+    --primary: #3fb3a6;     --primary-foreground: #0e1116;
+    --secondary: #1b2029;   --secondary-foreground: #e8eaef;
+    --muted: #181c24;       --muted-foreground: #9aa1b3;
+    --accent: #12302d;      --accent-foreground: #a9ddd6;
+    --destructive: #f04438; --destructive-foreground: #ffffff;
+    --border: #252a33; --input: #2d333e; --ring: #3fb3a6;
+    --rail: #1f3b38;
+    color-scheme: dark;
   }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+@theme inline {
+  --color-background: var(--background);  --color-foreground: var(--foreground);
+  --color-card: var(--card);              --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);        --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);        --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);    --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);            --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);          --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive); --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border); --color-input: var(--input); --color-ring: var(--ring);
+  --color-rail: var(--rail);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* flat: every shadow utility is a no-op */
+  --shadow-2xs: none; --shadow-xs: none; --shadow-sm: none; --shadow: none;
+  --shadow-md: none; --shadow-lg: none; --shadow-xl: none; --shadow-2xl: none;
+
+  --tracking-normal: var(--letter-spacing);
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-.home {
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 12px;
-  padding: 24px;
-  max-width: 640px;
-  margin: 0 auto;
-}
-
-.home h1 {
-  font-size: 2.5rem;
-  letter-spacing: -0.02em;
-}
-
-.muted {
-  color: var(--muted);
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
 }
