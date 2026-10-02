@@ -3,6 +3,7 @@ import {
   Atkinson_Hyperlegible_Mono,
   Atkinson_Hyperlegible_Next,
 } from "next/font/google";
+import { openGraph, twitter } from "../lib/metadata";
 import { site } from "../lib/site";
 import { themeScript } from "../lib/theme";
 import { SiteFooter } from "./site-footer";
@@ -26,21 +27,8 @@ export const metadata: Metadata = {
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
   alternates: { canonical: "/" },
-  openGraph: {
-    type: "profile",
-    url: "/",
-    siteName: site.name,
-    title: site.title,
-    description: site.description,
-    locale: "en_CA",
-    firstName: "James",
-    lastName: "Sheldon",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: site.title,
-    description: site.description,
-  },
+  openGraph,
+  twitter,
   robots: { index: true, follow: true },
 };
 
