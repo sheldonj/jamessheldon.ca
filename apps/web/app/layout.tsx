@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import {
   Atkinson_Hyperlegible_Mono,
   Atkinson_Hyperlegible_Next,
@@ -40,10 +40,6 @@ export const metadata: Metadata = {
     description: site.description,
   },
   robots: { index: true, follow: true },
-};
-
-export const viewport: Viewport = {
-  themeColor: "#ffffff",
 };
 
 export default function RootLayout({

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { THEME_KEY } from "../lib/theme";
+import { THEME_COLORS, THEME_KEY } from "../lib/theme";
 
 type Theme = "light" | "dark";
 
@@ -17,6 +17,9 @@ export function ThemeToggle() {
   function toggle() {
     const next: Theme = theme === "dark" ? "light" : "dark";
     document.documentElement.classList.toggle("dark", next === "dark");
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", THEME_COLORS[next]);
     try {
       localStorage.setItem(THEME_KEY, next);
     } catch {}
