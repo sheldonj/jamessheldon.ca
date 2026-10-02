@@ -1,7 +1,7 @@
 /*
  * James Sheldon design system: web theme (shadcn + Tailwind v4).
  * Tokens copied from the design system's "Web: shadcn + Tailwind" section.
- * Dark mode follows the OS by default; a `.dark` / `.light` class on <html> overrides it.
+ * Light by default; the footer toggle adds `.dark` to <html> and remembers the choice.
  */
 @import "tailwindcss";
 
@@ -37,22 +37,6 @@
   --border: #252a33; --input: #2d333e; --ring: #3fb3a6;
   --rail: #1f3b38;
   color-scheme: dark;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) {
-    --background: #0e1116;  --foreground: #e8eaef;
-    --card: #141820;        --card-foreground: #e8eaef;
-    --popover: #141820;     --popover-foreground: #e8eaef;
-    --primary: #3fb3a6;     --primary-foreground: #0e1116;
-    --secondary: #1b2029;   --secondary-foreground: #e8eaef;
-    --muted: #181c24;       --muted-foreground: #9aa1b3;
-    --accent: #12302d;      --accent-foreground: #a9ddd6;
-    --destructive: #f04438; --destructive-foreground: #ffffff;
-    --border: #252a33; --input: #2d333e; --ring: #3fb3a6;
-    --rail: #1f3b38;
-    color-scheme: dark;
-  }
 }
 
 @theme inline {

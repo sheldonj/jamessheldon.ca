@@ -1,9 +1,10 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import {
   Atkinson_Hyperlegible_Mono,
   Atkinson_Hyperlegible_Next,
 } from "next/font/google";
 import { site } from "../lib/site";
+import { themeScript } from "../lib/theme";
 import "./globals.css";
 
 const sans = Atkinson_Hyperlegible_Next({
@@ -41,20 +42,20 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0e1116" },
-  ],
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
+    <html
+      lang="en"
+      className={`${sans.variable} ${mono.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>{children}</body>
     </html>
   );
