@@ -6,6 +6,8 @@ import {
 import { openGraph, twitter } from "../lib/metadata";
 import { site } from "../lib/site";
 import { themeScript } from "../lib/theme";
+import { SiteFooter } from "./site-footer";
+import { SiteHeader } from "./site-header";
 import "./globals.css";
 
 const sans = Atkinson_Hyperlegible_Next({
@@ -44,7 +46,13 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body>{children}</body>
+      <body>
+        <div className="mx-auto flex min-h-svh max-w-4xl flex-col px-6 py-12 sm:px-10 sm:py-20 print:max-w-none print:p-0">
+          <SiteHeader />
+          {children}
+          <SiteFooter />
+        </div>
+      </body>
     </html>
   );
 }

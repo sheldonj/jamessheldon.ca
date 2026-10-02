@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { openGraph, twitter } from "../../lib/metadata";
 import { site } from "../../lib/site";
 import { resume, resumeFiles, resumeUpdated } from "../../lib/resume";
@@ -53,57 +52,17 @@ function RoleDot() {
 }
 
 export default function ResumePage() {
-  const { contact } = resume;
   return (
-    <div className="mx-auto flex min-h-svh max-w-4xl flex-col px-6 py-12 sm:px-10 sm:py-20 print:max-w-none print:p-0">
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <nav className="mb-10 flex flex-wrap items-center justify-between gap-4 print:hidden">
-        <Link
-          href="/"
-          className="font-mono text-[13px] text-muted-foreground hover:text-primary"
-        >
-          ← jamessheldon.ca
-        </Link>
-        <div className="flex flex-wrap gap-3">
-          <a href={resumeFiles.pdf} download className={primaryButton}>
-            Download PDF
-          </a>
-          <a href={resumeFiles.docx} download className={outlineButton}>
-            Download Word
-          </a>
-        </div>
-      </nav>
+      <main className="relative mt-16 grid gap-12 pl-10 before:absolute before:inset-y-0 before:left-[5px] before:w-[1.5px] before:bg-rail sm:mt-24 print:before:hidden print:pl-0">
+        <h1 className="text-[28px] leading-[1.15] font-semibold tracking-[-.025em] sm:text-[40px] sm:leading-[1.1]">
+          Resume
+        </h1>
 
-      <header className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
-        <div>
-          <h1 className="text-[44px] leading-none font-light tracking-[-.025em] sm:text-[56px]">
-            {resume.name.first} <b className="font-semibold">{resume.name.last}</b>
-          </h1>
-          <p className="mt-3 max-w-[46ch] text-muted-foreground">
-            {resume.headline}
-          </p>
-        </div>
-        <address className="font-mono text-[13px] leading-6 text-muted-foreground not-italic sm:text-right">
-          {contact.location}
-          <br />
-          <a href={`mailto:${contact.email}`} className="inline-block hover:text-primary">
-            {contact.email}
-          </a>
-          <br />
-          <a href={`https://${contact.linkedin}`} className="inline-block hover:text-primary">
-            {contact.linkedin}
-          </a>
-          <br />
-          <a href={`https://${contact.github}`} className="inline-block hover:text-primary">
-            {contact.github}
-          </a>
-        </address>
-      </header>
-
-      <main className="relative mt-14 grid gap-12 pl-10 before:absolute before:inset-y-0 before:left-[5px] before:w-[1.5px] before:bg-rail sm:mt-20 print:before:hidden print:pl-0">
         <section className="grid gap-4">
           <SectionLabel>Summary</SectionLabel>
           <p className="max-w-[68ch] text-lg leading-7 text-pretty text-muted-foreground">
@@ -183,12 +142,23 @@ export default function ResumePage() {
             .
           </p>
         </section>
+
+        <section className="grid gap-4 print:hidden">
+          <SectionLabel>Download</SectionLabel>
+          <p className="max-w-[68ch] leading-6 text-muted-foreground">
+            The same resume as a file, for applications and sharing.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <a href={resumeFiles.pdf} download className={primaryButton}>
+              Download PDF
+            </a>
+            <a href={resumeFiles.docx} download className={outlineButton}>
+              Download Word
+            </a>
+          </div>
+        </section>
       </main>
 
-      <footer className="mt-20 flex flex-wrap justify-between gap-2 border-t border-border pt-6 font-mono text-[13px] text-muted-foreground print:hidden">
-        <span>jamessheldon.ca</span>
-        <span>© 2026 James Sheldon</span>
-      </footer>
-    </div>
+    </>
   );
 }
