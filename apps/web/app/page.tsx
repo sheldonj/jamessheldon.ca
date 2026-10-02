@@ -21,7 +21,7 @@ const jsonLd = {
       familyName: "Sheldon",
       url: site.url,
       email: `mailto:${site.email}`,
-      jobTitle: "Full-stack engineer",
+      jobTitle: "Full-stack engineer and founding CTO",
       description: site.description,
       address: {
         "@type": "PostalAddress",
