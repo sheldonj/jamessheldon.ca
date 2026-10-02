@@ -1,22 +1,42 @@
 import { site } from "../lib/site";
 import { ThemeToggle } from "./theme-toggle";
 
+const personId = `${site.url}/#person`;
+
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: site.name,
-  url: site.url,
-  email: `mailto:${site.email}`,
-  jobTitle: "Full-stack engineer",
-  description: site.description,
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Calgary",
-    addressRegion: "AB",
-    addressCountry: "CA",
-  },
-  sameAs: [`https://${site.linkedin}`, `https://${site.github}`],
-  knowsAbout: ["TypeScript", "React", "Next.js", "Node.js", "AI agents"],
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${site.url}/#website`,
+      url: site.url,
+      name: site.name,
+      publisher: { "@id": personId },
+    },
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: site.name,
+      givenName: "James",
+      familyName: "Sheldon",
+      url: site.url,
+      email: `mailto:${site.email}`,
+      jobTitle: "Full-stack engineer",
+      description: site.description,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Calgary",
+        addressRegion: "AB",
+        addressCountry: "CA",
+      },
+      alumniOf: ["Cashew Research", "Contra", "Critical Mass"].map((name) => ({
+        "@type": "Organization",
+        name,
+      })),
+      sameAs: [`https://${site.linkedin}`, `https://${site.github}`],
+      knowsAbout: ["TypeScript", "React", "Next.js", "Node.js", "AI agents"],
+    },
+  ],
 };
 
 const button =
@@ -96,8 +116,8 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <a href={site.resume} download className={primaryButton}>
-              Download resume
+            <a href={site.resume} className={primaryButton}>
+              Resume
             </a>
           </div>
         </section>
