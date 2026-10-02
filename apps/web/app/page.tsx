@@ -1,5 +1,4 @@
 import { site } from "../lib/site";
-import { ThemeToggle } from "./theme-toggle";
 
 const personId = `${site.url}/#person`;
 
@@ -65,35 +64,11 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 export default function Home() {
   return (
-    <div className="mx-auto flex min-h-svh max-w-4xl flex-col px-6 py-12 sm:px-10 sm:py-20">
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-
-      <header className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
-        <div>
-          <p className="text-[44px] leading-none font-light tracking-[-.025em] sm:text-[56px]">
-            James <b className="font-semibold">Sheldon</b>
-          </p>
-          <p className="mt-3 max-w-[46ch] text-muted-foreground">{site.role}</p>
-        </div>
-        <address className="font-mono text-[13px] leading-6 text-muted-foreground not-italic sm:text-right">
-          {site.location}
-          <br />
-          <a href={`mailto:${site.email}`} className="inline-block hover:text-primary">
-            {site.email}
-          </a>
-          <br />
-          <a href={`https://${site.linkedin}`} className="inline-block hover:text-primary">
-            {site.linkedin}
-          </a>
-          <br />
-          <a href={`https://${site.github}`} className="inline-block hover:text-primary">
-            {site.github}
-          </a>
-        </address>
-      </header>
 
       <main className="relative mt-16 grid gap-14 pl-10 before:absolute before:inset-y-0 before:left-[5px] before:w-[1.5px] before:bg-rail sm:mt-24">
         <section className="grid gap-5">
@@ -141,11 +116,6 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="mt-20 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-t border-border pt-6 font-mono text-[13px] text-muted-foreground">
-        <span>jamessheldon.ca</span>
-        <ThemeToggle />
-        <span>© 2026 James Sheldon</span>
-      </footer>
-    </div>
+    </>
   );
 }
