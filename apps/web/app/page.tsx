@@ -95,8 +95,8 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <a href={site.resume} download className={primaryButton}>
-              Download resume
+            <a href={site.resume} className={primaryButton}>
+              Resume
             </a>
           </div>
         </section>

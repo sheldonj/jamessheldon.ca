@@ -9,5 +9,5 @@ export const site = {
   email: "sheldonj@gmail.com",
   github: "github.com/sheldonj",
   linkedin: "linkedin.com/in/jamessheldon",
-  resume: "/james-sheldon-resume.pdf",
+  resume: "/resume",
 } as const;
