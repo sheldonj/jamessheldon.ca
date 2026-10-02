@@ -1,7 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { site } from "../../lib/site";
-import { resume, resumeFiles } from "../../lib/resume";
+import { resume, resumeFiles, resumeUpdated } from "../../lib/resume";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  url: `${site.url}/resume`,
+  name: `Resume · ${site.name}`,
+  dateModified: resumeUpdated,
+  isPartOf: { "@id": `${site.url}/#website` },
+  mainEntity: { "@id": `${site.url}/#person` },
+};
 
 export const metadata: Metadata = {
   title: `Resume · ${site.name}`,
@@ -41,6 +51,10 @@ export default function ResumePage() {
   const { contact } = resume;
   return (
     <div className="mx-auto flex min-h-svh max-w-4xl flex-col px-6 py-12 sm:px-10 sm:py-20 print:max-w-none print:p-0">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <nav className="mb-10 flex flex-wrap items-center justify-between gap-4 print:hidden">
         <Link
           href="/"

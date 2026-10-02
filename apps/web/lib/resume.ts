@@ -132,6 +132,9 @@ export const resume = {
   recommendations: "linkedin.com/in/jamessheldon/details/recommendations",
 } as const;
 
+/** Bump when the resume content changes (feeds the sitemap and the page's JSON-LD). */
+export const resumeUpdated = "2026-10-02";
+
 export const resumeFiles = {
   pdf: "/james-sheldon-resume.pdf",
   docx: "/james-sheldon-resume.docx",
