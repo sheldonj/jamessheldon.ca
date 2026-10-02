@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>James Sheldon – Resume (Full-stack)</title>
+<!-- Source: "James Sheldon – Resume (Full-stack)" Claude Doc. Rendered to apps/web/public/james-sheldon-resume.pdf.
+     Phone number and two unconfirmed claims ([CONFIRM] markers) left out of the public copy. -->
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@300;400;600&family=Atkinson+Hyperlegible+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+@page { size: Letter; margin: 0.62in 0.85in 0.55in; }
+:root { --primary:#0f6e66; --rail:#cfe6e3; --ink:#141722; --body:#23283a; --copy:#2a2f3c; --subtle:#454b5c; --muted:#596073; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Atkinson Hyperlegible Next", sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.hd { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 22px; }
+.name { font-weight: 300; font-size: 33pt; line-height: 1; letter-spacing: -.025em; }
+.name b { font-weight: 600; }
+.headline { margin-top: 8px; font-size: 10.2pt; line-height: 1.5; color: var(--subtle); max-width: 46ch; }
+.contact { font: 400 8pt/1.75 "Atkinson Hyperlegible Mono", monospace; color: var(--muted); text-align: right; }
+.rail { position: relative; padding-left: 30px; }
+.rail::before { content: ""; position: absolute; left: 5px; top: 0; bottom: 0; width: 1.5px; background: var(--rail); }
+.sec { position: relative; font: 600 8pt/12pt "Atkinson Hyperlegible Mono", monospace; letter-spacing: .05em; text-transform: uppercase; color: var(--primary); margin: 14px 0 6px; }
+.sec:first-child { margin-top: 0; }
+.sec::before { content: ""; position: absolute; left: -28px; top: 2px; width: 7px; height: 7px; background: var(--primary); transform: rotate(45deg); }
+p.copy { font-size: 9.2pt; line-height: 1.5; color: var(--copy); max-width: 72ch; }
+.skills { font-size: 9.2pt; line-height: 1.5; color: var(--copy); }
+.skills b { color: var(--ink); font-weight: 600; }
+.role { position: relative; margin-bottom: 10px; break-inside: avoid; }
+.role::before { content: ""; position: absolute; left: -30px; top: 3px; width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid var(--primary); background: #fff; }
+.role.head::before { background: var(--primary); }
+.rh { display: flex; align-items: baseline; gap: 12px; }
+.co { font-weight: 600; font-size: 11pt; letter-spacing: -.01em; }
+.dt { margin-left: auto; white-space: nowrap; font: 400 8.2pt "Atkinson Hyperlegible Mono", monospace; color: var(--muted); }
+.ti { font-size: 9.6pt; line-height: 1.5; color: var(--subtle); margin-bottom: 3px; }
+ul { list-style: none; }
+li { margin: 0 0 2px 13px; text-indent: -13px; font-size: 9.6pt; line-height: 1.5; color: var(--body); max-width: 78ch; }
+li::before { content: "+"; display: inline-block; width: 13px; text-indent: 0; font: 500 9pt "Atkinson Hyperlegible Mono", monospace; color: var(--primary); }
+li b { color: var(--ink); font-weight: 600; }
+</style></head><body>
+<div class="hd">
+  <div><h1 class="name">James <b>Sheldon</b></h1><div class="headline">Senior full-stack engineer · Founding engineer &amp; CTO</div></div>
+  <div class="contact">Calgary, AB · Remote<br>sheldonj@gmail.com<br>linkedin.com/in/jamessheldon<br>jamessheldon.ca</div>
+</div>
+<div class="rail">
+  <div class="sec">Summary</div>
+  <p class="copy">I'm a full-stack engineer with 20+ years of building web products, most recently as founding engineer and CTO at Cashew Research, where I built a generative AI platform for market research. I work across TypeScript, React, Next.js, Node.js, GraphQL, and PostgreSQL, and I'm as comfortable leading a team as I am shipping features myself. Before Cashew, I built search and discovery at Contra and led technical work for clients like Nissan at Critical Mass.</p>
+
+  <div class="sec">Skills</div>
+  <div class="skills">
+    <div><b>Front-end:</b> TypeScript, JavaScript, React, Next.js</div>
+    <div><b>Back-end:</b> Node.js, GraphQL, tRPC, Temporal</div>
+    <div><b>Data:</b> PostgreSQL, Prisma, ZenStack, MongoDB, MSSQL, Meilisearch</div>
+    <div><b>Testing and delivery:</b> Playwright, Cypress, Jest, Vitest, mutation testing, CI/CD, Terraform</div>
+    <div><b>AI-assisted development:</b> Claude Code, agent-based workflows</div>
+    <div><b>Leadership:</b> hiring, mentoring, architecture decisions, client and vendor consultation</div>
+  </div>
+
+  <div class="sec">Experience</div>
+  <div class="role head">
+    <div class="rh"><span class="co">Cashew Research</span><span class="dt">2024 – 2026</span></div>
+    <div class="ti">Chief Technology Officer (Founding Engineer) · Remote (Calgary)</div>
+    <ul>
+      <li>Built a generative AI platform for market research that generated targeted survey questions, analyzed research data, and turned results into actionable insights.</li>
+      <li>Designed a methodology selection engine that recommended research approaches based on a study's goals.</li>
+      <li>Built the platform on Next.js, tRPC, PostgreSQL, and Temporal in a monorepo.</li>
+      <li>Co-authored about 5,300 commits with Claude Code on a self-designed agent system, with mutation testing as the review bar.</li>
+      <li>Co-owned, approved, and operated the Terraform and CI; the platform engineer built most of it.</li>
+      <li>Led the engineering team and instituted biweekly 1:1s.</li>
+    </ul>
+  </div>
+  <div class="role">
+    <div class="rh"><span class="co">Contra</span><span class="dt">Apr 2021 – Jan 2024</span></div>
+    <div class="ti">Senior Fullstack Engineer · Remote</div>
+    <ul>
+      <li>Designed and built the search and discovery feature at the core of Contra's talent discovery experience.</li>
+      <li>Led teams through projects central to the product across Search &amp; Discovery and Jobs.</li>
+      <li>Turned product requirements into tested, well-structured code across the stack, often on tight deadlines.</li>
+      <li>Mentored teammates while working as both an individual contributor and team lead.</li>
+    </ul>
+  </div>
+  <div class="role">
+    <div class="rh"><span class="co">Critical Mass</span><span class="dt">Jan 2014 – Apr 2021</span></div>
+    <div class="ti">Tech Director, Tech Lead, Senior Developer · Calgary, AB</div>
+    <ul>
+      <li>Set departmental practices and development standards with fellow tech directors and leads.</li>
+      <li>Hired, mentored, and staffed developers, and supported their career development at the department level.</li>
+      <li>Guided architecture decisions with project developers and leads, and ran technical consultations with clients and third-party vendors.</li>
+      <li>Delivered Nissan/Infiniti Next Gen Shopping Tools, the LodgeLink platform rebuild, Nissan Dealer Inventory, the Nissan mobile rebuild, and a series of campaign vehicle configurators.</li>
+    </ul>
+  </div>
+
+  <div class="sec">Earlier experience</div>
+  <ul>
+    <li><b>Sajak &amp; Farki</b> · Front-end Developer. Built JavaScript admin dashboards, social campaigns, and Facebook apps; helped set build, development, and QA standards.</li>
+    <li><b>Valtech (formerly NLC)</b> · Developer. Built the front end of a SharePoint 2010 performance-indicator dashboard with an agile team across North America.</li>
+    <li><b>Bryan Mills Iradesso</b> · Web Solutions Specialist. Managed developers and designers on corporate websites, intranets, and mobile apps; wrote RFP responses and requirements.</li>
+    <li><b>ZGM Modern Marketing Partners</b> · Lead Web Developer. Led a small team and built a custom CMS on .NET 4 and ASP.NET MVC with Twitter, Facebook, Google Maps, OpenID, Chase, and Moneris integrations.</li>
+    <li><b>Sprung Instant Structures</b> · Web Developer / Graphic Designer. Built a photo management system for international marketing staff and maintained the company website.</li>
+  </ul>
+
+  <div class="sec">Education</div>
+  <p class="copy"><b style="color:var(--ink)">Mount Royal University</b> · Bachelor of Communications, Electronic Publishing; Certificate of Arts and Sciences</p>
+  <p class="copy" style="margin-top:4px">Recommendations: linkedin.com/in/jamessheldon/details/recommendations</p>
+</div>
+</body></html>

@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import {
   Atkinson_Hyperlegible_Mono,
   Atkinson_Hyperlegible_Next,
 } from "next/font/google";
+import { site } from "../lib/site";
 import "./globals.css";
 
 const sans = Atkinson_Hyperlegible_Next({
@@ -15,9 +16,36 @@ const mono = Atkinson_Hyperlegible_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "James Sheldon",
-  description:
-    "James Sheldon, founding engineer and CTO. Verification-first engineering with AI agents.",
+  metadataBase: new URL(site.url),
+  title: site.title,
+  description: site.description,
+  applicationName: site.name,
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "profile",
+    url: "/",
+    siteName: site.name,
+    title: site.title,
+    description: site.description,
+    locale: "en_CA",
+    firstName: "James",
+    lastName: "Sheldon",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: site.title,
+    description: site.description,
+  },
+  robots: { index: true, follow: true },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0e1116" },
+  ],
 };
 
 export default function RootLayout({
