@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { openGraph, twitter } from "../../lib/metadata";
 import { site } from "../../lib/site";
 import { resume, resumeFiles, resumeUpdated } from "../../lib/resume";
 
@@ -13,11 +14,15 @@ const jsonLd = {
   mainEntity: { "@id": `${site.url}/#person` },
 };
 
+const title = `Resume · ${site.name}`;
+const description = `Resume of ${site.name}: ${resume.headline}. Read it here or download it as PDF or Word.`;
+
 export const metadata: Metadata = {
-  title: `Resume · ${site.name}`,
-  description: `Resume of ${site.name}: ${resume.headline}. Read it here or download it as PDF or Word.`,
+  title,
+  description,
   alternates: { canonical: "/resume" },
-  openGraph: { url: "/resume", title: `Resume · ${site.name}` },
+  openGraph: { ...openGraph, url: "/resume", title, description },
+  twitter: { ...twitter, title, description },
 };
 
 const button =
