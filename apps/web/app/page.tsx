@@ -33,17 +33,6 @@ function SectionMark() {
   );
 }
 
-function EntryMark({ filled = false }: { filled?: boolean }) {
-  return (
-    <i
-      aria-hidden
-      className={`absolute top-1 -left-10 size-3 rounded-full border-[1.5px] border-primary ${
-        filled ? "bg-primary" : "bg-background"
-      }`}
-    />
-  );
-}
-
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <h2 className="relative font-mono text-xs font-semibold uppercase tracking-[.05em] text-primary">
@@ -109,35 +98,6 @@ export default function Home() {
             <a href={site.resume} download className={primaryButton}>
               Download resume
             </a>
-          </div>
-        </section>
-
-        <section className="grid gap-4">
-          <SectionLabel>This site</SectionLabel>
-          <div className="relative grid gap-1">
-            <EntryMark filled />
-            <div className="flex flex-wrap items-baseline gap-x-3">
-              <h3 className="text-lg font-semibold tracking-[-.01em]">
-                Coming next
-              </h3>
-              <span className="ml-auto font-mono text-[13px] text-muted-foreground">
-                2026
-              </span>
-            </div>
-            <ul className="mt-2 grid gap-1.5">
-              {[
-                "Case studies from building an AI market-research platform as founding engineer",
-                "A write-up of my agent system and its mutation-testing review bar",
-                "A web version of my resume",
-              ].map((item) => (
-                <li
-                  key={item}
-                  className="max-w-[64ch] pl-4 -indent-4 leading-6 before:inline-block before:w-4 before:indent-0 before:font-mono before:font-medium before:text-primary before:content-['+']"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
           </div>
         </section>
 
