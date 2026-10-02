@@ -1,4 +1,5 @@
 import { site } from "../lib/site";
+import { ThemeToggle } from "./theme-toggle";
 
 const personId = `${site.url}/#person`;
 
@@ -140,8 +141,9 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="mt-20 flex flex-wrap justify-between gap-2 border-t border-border pt-6 font-mono text-[13px] text-muted-foreground">
+      <footer className="mt-20 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-t border-border pt-6 font-mono text-[13px] text-muted-foreground">
         <span>jamessheldon.ca</span>
+        <ThemeToggle />
         <span>© 2026 James Sheldon</span>
       </footer>
     </div>
