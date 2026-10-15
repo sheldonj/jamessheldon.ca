@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
-import { navLinks, site } from "../lib/site";
+import { dotField, navLinks, site } from "../lib/site";
 import logo from "../public/icon-192.png";
 import { DotField } from "./dot-field";
 import { MobileMenu } from "./mobile-menu";
@@ -52,9 +52,10 @@ export function SiteHeader() {
   return (
     <header
       ref={ref}
-      className="site-header sticky top-0 z-40 bg-background print:static"
+      data-field={dotField}
+      className="site-header sticky top-0 z-40 print:static"
     >
-      <DotField />
+      {dotField === "header" && <DotField mode="header" />}
       <div className="site-header-inner relative mx-auto flex max-w-4xl items-center justify-between gap-6 px-6 sm:px-10">
         <Link
           href="/"
@@ -78,13 +79,14 @@ export function SiteHeader() {
         </Link>
         <nav
           aria-label="Site"
-          className="hidden shrink-0 items-center gap-5 font-mono text-[13px] lg:flex print:hidden"
+          className="hidden shrink-0 items-center gap-5 rounded-lg bg-background ring-8 ring-background font-mono text-[13px] lg:flex print:hidden"
         >
           {navLinks.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="rounded-sm text-muted-foreground hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+              aria-current={pathname === l.href ? "page" : undefined}
+              className="rounded-sm text-muted-foreground hover:text-foreground aria-[current=page]:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
             >
               {l.label}
             </Link>

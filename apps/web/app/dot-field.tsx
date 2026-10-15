@@ -3,23 +3,30 @@
 import { useEffect, useRef } from "react";
 
 const GAP = 18;
+const FRAME_MS = 1000 / 30;
 
-// Faint dot grid behind the header. Dots near the pointer turn teal and a slow
-// wave crosses the grid. With reduced motion the wave is off and the grid only
-// redraws for the pointer. The header fades it out as it condenses.
-export function DotField() {
+// Faint dot grid. Dots near the pointer turn teal and a slow wave crosses the
+// grid. With reduced motion the wave is off and the grid only redraws for the
+// pointer and scrolling. The pointer is ignored over links and buttons so the
+// grid never lights up behind what you're about to click.
+//
+// mode "header": fills its parent (the header) and fades as the header condenses.
+// mode "page": fixed behind the whole page; the grid scrolls with the content.
+export function DotField({ mode }: { mode: "header" | "page" }) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = ref.current;
-    const host = canvas?.parentElement;
     const ctx = canvas?.getContext("2d");
-    if (!canvas || !host || !ctx) return;
+    if (!canvas || !ctx) return;
+    const page = mode === "page";
+    const host: HTMLElement | Window = page ? window : canvas.parentElement!;
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
     let w = 0;
     let h = 0;
     let raf = 0;
+    let last = 0;
     let pointer: { x: number; y: number } | null = null;
     let colors = readColors();
 
@@ -35,10 +42,14 @@ export function DotField() {
       if (!ctx) return;
       ctx.clearRect(0, 0, w, h);
       const wave = !reduce.matches;
-      for (let y = GAP / 2; y < h; y += GAP) {
+      // In page mode the grid is anchored to the document, so it scrolls with it.
+      const scroll = page ? window.scrollY : 0;
+      const y0 = GAP / 2 - (scroll % GAP);
+      for (let y = y0; y < h; y += GAP) {
+        const py = y + scroll;
         for (let x = GAP / 2; x < w; x += GAP) {
           let k = wave
-            ? Math.max(0, Math.sin(x * 0.012 - y * 0.02 - t * 0.0009)) ** 6 * 0.55
+            ? Math.max(0, Math.sin(x * 0.012 - py * 0.02 - t * 0.0009)) ** 6 * 0.55
             : 0;
           if (pointer) {
             const d = Math.hypot(x - pointer.x, y - pointer.y);
@@ -54,10 +65,12 @@ export function DotField() {
       ctx.globalAlpha = 1;
     }
 
-    // Animate only while the header is expanded; a condensed bar keeps a still grid.
+    // Header mode animates only while the header is expanded.
     function loop(t: number) {
-      if (window.scrollY < 140 || pointer) draw(t);
       raf = requestAnimationFrame(loop);
+      if (t - last < FRAME_MS) return;
+      last = t;
+      if (page || window.scrollY < 140 || pointer) draw(t);
     }
 
     function start() {
@@ -79,12 +92,20 @@ export function DotField() {
 
     const onMove = (e: PointerEvent) => {
       if (e.pointerType !== "mouse" || !canvas) return;
-      const r = canvas.getBoundingClientRect();
-      pointer = { x: e.clientX - r.left, y: e.clientY - r.top };
+      const overControl = (e.target as Element | null)?.closest?.("a, button");
+      if (overControl) {
+        pointer = null;
+      } else {
+        const r = canvas.getBoundingClientRect();
+        pointer = { x: e.clientX - r.left, y: e.clientY - r.top };
+      }
       if (reduce.matches) draw(0);
     };
     const onLeave = () => {
       pointer = null;
+      if (reduce.matches) draw(0);
+    };
+    const onScroll = () => {
       if (reduce.matches) draw(0);
     };
 
@@ -99,8 +120,10 @@ export function DotField() {
       attributes: true,
       attributeFilter: ["class"],
     });
-    host.addEventListener("pointermove", onMove);
-    host.addEventListener("pointerleave", onLeave);
+    host.addEventListener("pointermove", onMove as EventListener);
+    const leaveTarget = page ? document.documentElement : host;
+    leaveTarget.addEventListener("pointerleave", onLeave);
+    if (page) window.addEventListener("scroll", onScroll, { passive: true });
     reduce.addEventListener("change", start);
     start();
 
@@ -108,17 +131,22 @@ export function DotField() {
       cancelAnimationFrame(raf);
       sizeObserver.disconnect();
       themeObserver.disconnect();
-      host.removeEventListener("pointermove", onMove);
-      host.removeEventListener("pointerleave", onLeave);
+      host.removeEventListener("pointermove", onMove as EventListener);
+      leaveTarget.removeEventListener("pointerleave", onLeave);
+      window.removeEventListener("scroll", onScroll);
       reduce.removeEventListener("change", start);
     };
-  }, []);
+  }, [mode]);
 
   return (
     <canvas
       ref={ref}
       aria-hidden
-      className="dot-field pointer-events-none absolute inset-x-0 top-0 h-[200px] w-full print:hidden"
+      className={
+        mode === "page"
+          ? "dot-field-page pointer-events-none fixed inset-0 -z-10 h-full w-full print:hidden"
+          : "dot-field pointer-events-none absolute inset-x-0 top-0 h-[200px] w-full print:hidden"
+      }
     />
   );
 }
