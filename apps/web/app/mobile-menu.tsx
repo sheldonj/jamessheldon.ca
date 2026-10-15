@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { navLinks, site } from "../lib/site";
 import logo from "../public/icon-192.png";
 import { CalendlyButton } from "./calendly-button";
@@ -16,6 +16,16 @@ const button =
 export function MobileMenu() {
   const ref = useRef<HTMLDialogElement>(null);
   const close = () => ref.current?.close();
+
+  // The trigger is hidden from lg up, so close an open sheet if the window widens.
+  useEffect(() => {
+    const wide = window.matchMedia("(min-width: 64rem)");
+    const onChange = (e: MediaQueryListEvent) => {
+      if (e.matches) ref.current?.close();
+    };
+    wide.addEventListener("change", onChange);
+    return () => wide.removeEventListener("change", onChange);
+  }, []);
 
   return (
     <>
