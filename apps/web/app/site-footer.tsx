@@ -8,6 +8,7 @@ import { ThemeToggle } from "./theme-toggle";
 const links = [
   { href: "/", label: "Home" },
   { href: site.resume, label: "Resume" },
+  { href: "/contact", label: "Contact" },
 ];
 
 // Shared footer: page links, theme toggle and copyright. Hidden when printing.

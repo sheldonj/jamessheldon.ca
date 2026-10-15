@@ -4,8 +4,9 @@ import {
   Atkinson_Hyperlegible_Next,
 } from "next/font/google";
 import { openGraph, twitter } from "../lib/metadata";
-import { site } from "../lib/site";
+import { dotField, site } from "../lib/site";
 import { themeScript } from "../lib/theme";
+import { DotField } from "./dot-field";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
 import "./globals.css";
@@ -45,6 +46,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="flex min-h-svh flex-col">
+        {dotField === "page" && <DotField mode="page" />}
         <SiteHeader />
         <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col px-6 pb-12 sm:px-10 sm:pb-20 print:max-w-none print:p-0">
           <p className="font-mono text-[13px] leading-6 text-muted-foreground">

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { site } from "../lib/site";
-import { CalendlyButton } from "./calendly-button";
+import Link from "next/link";
 import { person, website } from "../lib/structured-data";
 import headshot from "../public/james-sheldon.jpg";
 
@@ -89,7 +89,9 @@ export default function Home() {
             reach me.
           </p>
           <div className="flex flex-wrap gap-3">
-            <CalendlyButton className={primaryButton}>Book a call</CalendlyButton>
+            <Link href="/contact" className={primaryButton}>
+              Book a call
+            </Link>
             <a href={`mailto:${site.email}`} className={outlineButton}>
               Email me
             </a>

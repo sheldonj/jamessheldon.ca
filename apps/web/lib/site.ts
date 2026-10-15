@@ -13,8 +13,12 @@ export const site = {
   calendly: "https://calendly.com/james_sheldon/30min",
 } as const;
 
-// In-page sections linked from the header and the menu sheet.
+// Links in the header and the menu sheet.
 export const navLinks = [
   { href: "/#now", label: "Now" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/contact", label: "Contact" },
 ] as const;
+
+// Where the dot-grid canvas draws: "page" fills the whole window behind the
+// content; "header" keeps it to the top-right of the header only.
+export const dotField: "page" | "header" = "page";
