@@ -1,34 +1,104 @@
-import Link from "next/link";
-import { site } from "../lib/site";
+"use client";
 
-// Shared header: the name lockup (links home), role line and mono contact block.
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef } from "react";
+import { navLinks, site } from "../lib/site";
+import logo from "../public/icon-192.png";
+import { DotField } from "./dot-field";
+import { MobileMenu } from "./mobile-menu";
+
+// Shared sticky header: logo, name lockup and role line. It starts large and
+// condenses into a slim bar as the page scrolls (--p goes 0 → 1 over 140px;
+// sizes are in globals.css). Below lg the links move into a menu sheet.
 export function SiteHeader() {
+  const ref = useRef<HTMLElement>(null);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let raf = 0;
+    let fullHeight = 0;
+    // A bottom margin makes up whatever height the header has lost, so the
+    // page below never moves. Without it a shorter header shortens the page,
+    // which changes scrollY near the bottom and makes the header flicker.
+    const update = () => {
+      raf = 0;
+      const p = Math.min(1, Math.max(0, window.scrollY / 140));
+      el.style.setProperty("--p", p.toFixed(3));
+      el.style.marginBottom = `${fullHeight - el.offsetHeight}px`;
+    };
+    const measure = () => {
+      el.style.setProperty("--p", "0");
+      fullHeight = el.offsetHeight;
+      update();
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    measure();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", measure);
+    document.fonts?.ready.then(measure);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", measure);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
   return (
-    <header className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
-      <div>
+    <header
+      ref={ref}
+      className="site-header sticky top-0 z-40 bg-background print:static"
+    >
+      <DotField />
+      <div className="site-header-inner relative mx-auto flex max-w-4xl items-center justify-between gap-6 px-6 sm:px-10">
         <Link
           href="/"
-          className="inline-block rounded-md text-[44px] leading-none font-light tracking-[-.025em] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring sm:text-[56px]"
+          className="site-id flex min-w-0 items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
         >
-          James <b className="font-semibold">Sheldon</b>
+          <Image
+            src={logo}
+            alt=""
+            priority
+            sizes="84px"
+            className="site-logo shrink-0 rounded-sm dark:outline dark:outline-border"
+          />
+          <span className="min-w-0">
+            <span className="site-name block leading-none font-light tracking-[-.025em] whitespace-nowrap">
+              James <b className="font-semibold">Sheldon</b>
+            </span>
+            <span className="site-role block text-muted-foreground">
+              {site.role}
+            </span>
+          </span>
         </Link>
-        <p className="mt-3 max-w-[46ch] text-muted-foreground">{site.role}</p>
+        <nav
+          aria-label="Site"
+          className="hidden shrink-0 items-center gap-5 font-mono text-[13px] lg:flex print:hidden"
+        >
+          {navLinks.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className="rounded-sm text-muted-foreground hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            >
+              {l.label}
+            </Link>
+          ))}
+          <Link
+            href={site.resume}
+            aria-current={pathname === site.resume ? "page" : undefined}
+            className="inline-flex h-8 items-center rounded-lg bg-primary px-3 font-sans text-[13px] font-semibold text-primary-foreground hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          >
+            Resume
+          </Link>
+        </nav>
+        <MobileMenu />
       </div>
-      <address className="font-mono text-[13px] leading-6 text-muted-foreground not-italic sm:text-right">
-        {site.location}
-        <br />
-        <a href={`mailto:${site.email}`} className="inline-block hover:text-primary">
-          {site.email}
-        </a>
-        <br />
-        <a href={`https://${site.linkedin}`} className="inline-block hover:text-primary">
-          {site.linkedin}
-        </a>
-        <br />
-        <a href={`https://${site.github}`} className="inline-block hover:text-primary">
-          {site.github}
-        </a>
-      </address>
     </header>
   );
 }

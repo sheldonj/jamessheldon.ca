@@ -8,10 +8,14 @@ type Theme = "light" | "dark";
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme | null>(null);
 
+  // Stay in sync when another toggle (footer or menu sheet) changes the theme.
   useEffect(() => {
-    setTheme(
-      document.documentElement.classList.contains("dark") ? "dark" : "light",
-    );
+    const root = document.documentElement;
+    const read = () => setTheme(root.classList.contains("dark") ? "dark" : "light");
+    read();
+    const observer = new MutationObserver(read);
+    observer.observe(root, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
   }, []);
 
   function toggle() {

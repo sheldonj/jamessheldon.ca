@@ -74,3 +74,53 @@
     @apply bg-background text-foreground font-sans antialiased;
   }
 }
+
+/*
+ * Sticky header ("lockup bar"). --p is set from scroll position by
+ * site-header.tsx: 0 at the top of the page, 1 once it has fully condensed.
+ * Negative results of calc() clamp to zero, so the role line collapses early.
+ */
+.site-header {
+  --p: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) calc(var(--p) * 100%), transparent);
+}
+.site-header-inner { padding-block: calc(28px - 18px * var(--p)) calc(24px - 14px * var(--p)); }
+.site-id { gap: calc(14px - 4px * var(--p)); }
+.site-logo { width: calc(52px - 22px * var(--p)); height: calc(52px - 22px * var(--p)); }
+.site-name { font-size: calc(30px - 12px * var(--p)); }
+.site-role {
+  font-size: 14px;
+  line-height: 1.4;
+  margin-top: calc(8px * (1 - var(--p)));
+  max-height: calc(60px * (1 - var(--p) * 1.4));
+  opacity: calc(1 - var(--p) * 1.6);
+  overflow: hidden;
+}
+.dot-field {
+  opacity: calc(1 - var(--p) * .85);
+  mask-image: linear-gradient(180deg, #000, transparent);
+}
+@media (min-width: 40rem) {
+  .site-header-inner { padding-block: calc(56px - 44px * var(--p)) calc(40px - 28px * var(--p)); }
+  .site-id { gap: calc(22px - 10px * var(--p)); }
+  .site-logo { width: calc(84px - 50px * var(--p)); height: calc(84px - 50px * var(--p)); }
+  .site-name { font-size: calc(54px - 34px * var(--p)); }
+  .site-role { font-size: 16px; margin-top: calc(12px * (1 - var(--p))); max-height: calc(48px * (1 - var(--p) * 1.4)); }
+  .dot-field { mask-image: linear-gradient(90deg, transparent 0 30%, #000 75%); }
+}
+@media (min-width: 64rem) {
+  .site-role { white-space: nowrap; }
+}
+@media print {
+  .site-header { --p: 0 !important; margin-bottom: 0 !important; }
+  .site-header-inner { padding: 0 0 12px; }
+}
+
+/* Mobile menu sheet: slides up from the bottom. */
+.sheet {
+  translate: 0 100%;
+  transition: translate .25s ease, overlay .25s allow-discrete, display .25s allow-discrete;
+}
+.sheet[open] { translate: 0 0; }
+@starting-style { .sheet[open] { translate: 0 100%; } }
+@media (prefers-reduced-motion: reduce) { .sheet { transition: none; } }
