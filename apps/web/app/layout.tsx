@@ -44,9 +44,18 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body>
-        <div className="mx-auto flex min-h-svh max-w-4xl flex-col px-6 py-12 sm:px-10 sm:py-20 print:max-w-none print:p-0">
-          <SiteHeader />
+      <body className="flex min-h-svh flex-col">
+        <SiteHeader />
+        <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col px-6 pb-12 sm:px-10 sm:pb-20 print:max-w-none print:p-0">
+          <p className="font-mono text-[13px] leading-6 text-muted-foreground">
+            {site.location} ·{" "}
+            <a href={`mailto:${site.email}`} className="hover:text-primary">
+              {site.email}
+            </a>
+            <span className="hidden print:inline">
+              {" "}· {site.linkedin} · {site.github}
+            </span>
+          </p>
           {children}
           <SiteFooter />
         </div>

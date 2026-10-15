@@ -10,4 +10,11 @@ export const site = {
   github: "github.com/sheldonj",
   linkedin: "linkedin.com/in/jamessheldon",
   resume: "/resume",
+  calendly: "https://calendly.com/james_sheldon/30min",
 } as const;
+
+// In-page sections linked from the header and the menu sheet.
+export const navLinks = [
+  { href: "/#now", label: "Now" },
+  { href: "/#contact", label: "Contact" },
+] as const;

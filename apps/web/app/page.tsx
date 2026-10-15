@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { site } from "../lib/site";
+import { CalendlyButton } from "./calendly-button";
 import { person, website } from "../lib/structured-data";
 import headshot from "../public/james-sheldon.jpg";
 
@@ -45,8 +46,8 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <main className="relative mt-16 grid gap-14 pl-10 before:absolute before:inset-y-0 before:left-[5px] before:w-[1.5px] before:bg-rail sm:mt-24">
-        <section className="grid gap-5">
+      <main className="relative mt-12 grid gap-14 pl-10 before:absolute before:inset-y-0 before:left-[5px] before:w-[1.5px] before:bg-rail sm:mt-16">
+        <section id="now" className="grid scroll-mt-24 gap-5">
           <SectionLabel>Now</SectionLabel>
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-7">
             <Image
@@ -81,12 +82,14 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="grid gap-4">
+        <section id="contact" className="grid scroll-mt-24 gap-4">
           <SectionLabel>Contact</SectionLabel>
           <p className="max-w-[64ch] leading-6 text-muted-foreground">
-            The quickest way to reach me is email.
+            Book a 30-minute call, or email me. Email is the quickest way to
+            reach me.
           </p>
           <div className="flex flex-wrap gap-3">
+            <CalendlyButton className={primaryButton}>Book a call</CalendlyButton>
             <a href={`mailto:${site.email}`} className={outlineButton}>
               Email me
             </a>
