@@ -4,9 +4,53 @@ import { useEffect, useRef } from "react";
 
 const GAP = 18;
 const FRAME_MS = 1000 / 30;
+// Noise scale in px per lattice cell, and how fast the field drifts.
+const SCALE = 260;
+const DRIFT = 0.00006;
 
-// Faint dot grid. Dots near the pointer turn teal and a slow wave crosses the
-// grid. With reduced motion the wave is off and the grid only redraws for the
+// Integer hash -> [0, 1). Seeded by absolute grid position, so the field
+// never tiles the way a sine wave does.
+function hash(x: number, y: number, z: number) {
+  let n =
+    Math.imul(x, 374761393) +
+    Math.imul(y, 668265263) +
+    Math.imul(z, 2147483647);
+  n = Math.imul(n ^ (n >>> 13), 1274126177);
+  return ((n ^ (n >>> 16)) >>> 0) / 4294967296;
+}
+
+const fade = (t: number) => t * t * (3 - 2 * t);
+const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+// Smooth 3D value noise in [0, 1).
+function noise(x: number, y: number, z: number) {
+  const xi = Math.floor(x);
+  const yi = Math.floor(y);
+  const zi = Math.floor(z);
+  const u = fade(x - xi);
+  const v = fade(y - yi);
+  const w = fade(z - zi);
+  const plane = (k: number) =>
+    lerp(
+      lerp(hash(xi, yi, k), hash(xi + 1, yi, k), u),
+      lerp(hash(xi, yi + 1, k), hash(xi + 1, yi + 1, k), u),
+      v,
+    );
+  return lerp(plane(zi), plane(zi + 1), w);
+}
+
+// Two octaves, thresholded so only sparse, soft patches light up.
+function glow(x: number, y: number, t: number) {
+  const z = t * DRIFT;
+  const n =
+    noise(x / SCALE, y / SCALE, z) * 0.65 +
+    noise(x / (SCALE * 0.45) + 31.7, y / (SCALE * 0.45) - 12.3, z * 1.6) * 0.35;
+  const k = fade(Math.min(1, Math.max(0, (n - 0.58) / 0.22)));
+  return k * 0.55;
+}
+
+// Faint dot grid. Dots near the pointer turn teal, and soft patches of noise
+// drift across the grid. With reduced motion the patches hold still and the grid only redraws for the
 // pointer and scrolling. The pointer is ignored over links and buttons so the
 // grid never lights up behind what you're about to click.
 //
@@ -48,9 +92,7 @@ export function DotField({ mode }: { mode: "header" | "page" }) {
       for (let y = y0; y < h; y += GAP) {
         const py = y + scroll;
         for (let x = GAP / 2; x < w; x += GAP) {
-          let k = wave
-            ? Math.max(0, Math.sin(x * 0.012 - py * 0.02 - t * 0.0009)) ** 6 * 0.55
-            : 0;
+          let k = glow(x, py, wave ? t : 0);
           if (pointer) {
             const d = Math.hypot(x - pointer.x, y - pointer.y);
             k = Math.max(k, Math.max(0, 1 - d / 110));
