@@ -24,11 +24,14 @@ function loadCalendly(): Promise<void> {
     const js = document.createElement("script");
     js.src = `${WIDGET}.js`;
     js.async = true;
-    js.onload = () => resolve();
-    js.onerror = () => {
+    const fail = () => {
       loading = null;
+      js.remove();
+      css.remove();
       reject(new Error("Calendly failed to load"));
     };
+    js.onload = () => (window.Calendly ? resolve() : fail());
+    js.onerror = fail;
     document.head.append(js);
   });
   return loading;
