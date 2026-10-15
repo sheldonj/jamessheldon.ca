@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { site } from "../lib/site";
+import headshot from "../public/james-sheldon.jpg";
 
 const personId = `${site.url}/#person`;
 
@@ -19,6 +21,7 @@ const jsonLd = {
       givenName: "James",
       familyName: "Sheldon",
       url: site.url,
+      image: `${site.url}/james-sheldon.jpg`,
       email: `mailto:${site.email}`,
       jobTitle: "Full-stack engineer and founding CTO",
       description: site.description,
@@ -73,10 +76,19 @@ export default function Home() {
       <main className="relative mt-16 grid gap-14 pl-10 before:absolute before:inset-y-0 before:left-[5px] before:w-[1.5px] before:bg-rail sm:mt-24">
         <section className="grid gap-5">
           <SectionLabel>Now</SectionLabel>
-          <h1 className="text-[28px] leading-[1.15] font-semibold tracking-[-.025em] text-balance sm:max-w-[22ch] sm:text-[40px] sm:leading-[1.1]">
-            I&rsquo;m a full-stack engineer with 20+ years of building web
-            products.
-          </h1>
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-7">
+            <Image
+              src={headshot}
+              alt="James Sheldon"
+              priority
+              sizes="(min-width: 640px) 128px, 96px"
+              className="size-24 shrink-0 rounded-xl border border-border object-cover sm:size-32"
+            />
+            <h1 className="text-[28px] leading-[1.15] font-semibold tracking-[-.025em] text-balance sm:max-w-[22ch] sm:text-[40px] sm:leading-[1.1]">
+              I&rsquo;m a full-stack engineer with 20+ years of building web
+              products.
+            </h1>
+          </div>
           <div className="grid max-w-[64ch] gap-4 text-lg leading-7 text-muted-foreground">
             <p>
               Most recently I was founding engineer and CTO at Cashew Research,
