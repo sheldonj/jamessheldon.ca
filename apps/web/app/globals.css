@@ -124,12 +124,19 @@
   background: color-mix(in srgb, var(--background) calc(var(--p) * 88%), transparent);
   backdrop-filter: blur(calc(var(--p) * 8px));
 }
+/* Keep the dots out from behind the header, content and footer: on mobile
+   they stay faint everywhere; from 40rem they fade out over the centre
+   column (max-w-4xl = 56rem) and show at full strength in the margins. */
 .dot-field-page {
-  mask-image: linear-gradient(180deg, #000 0 140px, rgb(0 0 0 / .2) 320px);
+  mask-image: linear-gradient(rgb(0 0 0 / .12), rgb(0 0 0 / .12));
 }
 @media (min-width: 40rem) {
   .dot-field-page {
-    mask-image: radial-gradient(ellipse 55% 60% at 50% 50%, rgb(0 0 0 / .35), #000 85%);
+    mask-image: linear-gradient(90deg,
+      #000 calc(50% - 32rem),
+      rgb(0 0 0 / .06) calc(50% - 27rem),
+      rgb(0 0 0 / .06) calc(50% + 27rem),
+      #000 calc(50% + 32rem));
   }
 }
 
