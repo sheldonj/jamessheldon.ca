@@ -1,44 +1,16 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { site } from "../lib/site";
+import { person, website } from "../lib/structured-data";
 import headshot from "../public/james-sheldon.jpg";
-
-const personId = `${site.url}/#person`;
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebSite",
-      "@id": `${site.url}/#website`,
-      url: site.url,
-      name: site.name,
-      publisher: { "@id": personId },
-    },
-    {
-      "@type": "Person",
-      "@id": personId,
-      name: site.name,
-      givenName: "James",
-      familyName: "Sheldon",
-      url: site.url,
-      image: `${site.url}/james-sheldon.jpg`,
-      email: `mailto:${site.email}`,
-      jobTitle: "Full-stack engineer and founding CTO",
-      description: site.description,
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Calgary",
-        addressRegion: "AB",
-        addressCountry: "CA",
-      },
-      alumniOf: ["Cashew Research", "Contra", "Critical Mass"].map((name) => ({
-        "@type": "Organization",
-        name,
-      })),
-      sameAs: [`https://${site.linkedin}`, `https://${site.github}`],
-      knowsAbout: ["TypeScript", "React", "Next.js", "Node.js", "AI agents"],
-    },
-  ],
+  "@graph": [website, person],
+};
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
 };
 
 const button =
