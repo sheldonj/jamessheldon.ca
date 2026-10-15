@@ -26,10 +26,8 @@ export const metadata: Metadata = {
   applicationName: site.name,
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
-  alternates: { canonical: "/" },
   openGraph,
   twitter,
-  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({

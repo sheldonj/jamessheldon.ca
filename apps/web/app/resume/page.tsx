@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { openGraph, twitter } from "../../lib/metadata";
 import { site } from "../../lib/site";
 import { resume, resumeFiles, resumeUpdated } from "../../lib/resume";
+import { person, websiteId } from "../../lib/structured-data";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -9,8 +10,8 @@ const jsonLd = {
   url: `${site.url}/resume`,
   name: `Resume · ${site.name}`,
   dateModified: resumeUpdated,
-  isPartOf: { "@id": `${site.url}/#website` },
-  mainEntity: { "@id": `${site.url}/#person` },
+  isPartOf: { "@id": websiteId },
+  mainEntity: person,
 };
 
 const title = `Resume · ${site.name}`;
