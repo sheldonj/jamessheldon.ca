@@ -81,16 +81,18 @@ export function SiteHeader() {
           aria-label="Site"
           className="hidden shrink-0 items-center gap-5 rounded-lg bg-background ring-8 ring-background font-mono text-[13px] lg:flex print:hidden"
         >
-          {navLinks.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              aria-current={pathname === l.href ? "page" : undefined}
-              className="rounded-sm text-muted-foreground hover:text-foreground aria-[current=page]:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-            >
-              {l.label}
-            </Link>
-          ))}
+          {navLinks
+            .filter((l) => l.label !== "Now")
+            .map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                aria-current={pathname === l.href ? "page" : undefined}
+                className="rounded-sm text-muted-foreground hover:text-foreground aria-[current=page]:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+              >
+                {l.label}
+              </Link>
+            ))}
           <Link
             href={site.resume}
             aria-current={pathname === site.resume ? "page" : undefined}

@@ -70,9 +70,10 @@ export default function Home() {
               for clients like Nissan at Critical Mass.
             </p>
             <p>
-              I work across TypeScript, React, Next.js and Node.js, and I&rsquo;m
-              as comfortable leading a team as I am shipping features myself.
-              These days I build with AI agents, and tests decide what ships.
+              I work across TypeScript, React, Next.js and Node.js, and
+              I&rsquo;m as comfortable leading a team as I am shipping features
+              myself. These days I build with AI agents, and tests decide what
+              ships.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -83,7 +84,14 @@ export default function Home() {
         </section>
 
         <section id="contact" className="grid scroll-mt-24 gap-4">
-          <SectionLabel>Contact</SectionLabel>
+          <SectionLabel>
+            <Link
+              href="/contact"
+              className="rounded-sm underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            >
+              Contact
+            </Link>
+          </SectionLabel>
           <p className="max-w-[64ch] leading-6 text-muted-foreground">
             Book a 30-minute call, or email me. Email is the quickest way to
             reach me.
@@ -104,7 +112,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-
     </>
   );
 }
