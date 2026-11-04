@@ -7,6 +7,7 @@ import { openGraph, twitter } from "../lib/metadata";
 import { dotField, site } from "../lib/site";
 import { themeScript } from "../lib/theme";
 import { DotField } from "./dot-field";
+import { OpenToWork } from "./open-to-work";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
 import "./globals.css";
@@ -57,10 +58,12 @@ export default function RootLayout({
             <span className="hidden print:inline">
               {" "}· {site.linkedin} · {site.github}
             </span>
+            <OpenToWork placement="inline" />
           </p>
           {children}
           <SiteFooter />
         </div>
+        <OpenToWork placement="corner" />
       </body>
     </html>
   );

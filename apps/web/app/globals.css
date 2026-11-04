@@ -163,3 +163,11 @@ html {
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+/* Open-to-work dot: a slow, soft ping. Still under reduced motion. */
+.status-ping { animation: status-ping 2.4s cubic-bezier(0, 0, .2, 1) infinite; }
+@keyframes status-ping {
+  0% { transform: scale(1); opacity: .5; }
+  70%, 100% { transform: scale(2.4); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .status-ping { animation: none; opacity: 0; } }
