@@ -11,6 +11,8 @@ export const site = {
   linkedin: "linkedin.com/in/jamessheldon",
   resume: "/resume",
   calendly: "https://calendly.com/james_sheldon/30min",
+  // Job-search status badge (app/open-to-work.tsx). Set to "" to hide it.
+  openToWork: "Open to new roles",
 } as const;
 
 // Links in the header and the menu sheet.
