@@ -36,7 +36,7 @@ export const person = {
     name,
   })),
   // Canonical profile URLs (LinkedIn redirects the bare host to www).
-  sameAs: [`https://www.${site.linkedin}`, `https://${site.github}`],
+  sameAs: [`https://www.${site.linkedin}`, `https://${site.github}`, `https://${site.contra}`],
   knowsAbout: [
     "TypeScript",
     "React",
