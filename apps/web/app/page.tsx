@@ -70,22 +70,18 @@ export default function Home() {
               for clients like Nissan at Critical Mass.
             </p>
             <p>
-              I work across TypeScript, React, Next.js and Node.js, and
-              I&rsquo;m as comfortable leading a team as I am shipping features
-              myself. These days I build with AI agents, and tests decide what
-              ships.
+              I build in TypeScript across the stack, with React and Next.js on
+              the front and Node.js behind it. I&rsquo;m as happy leading a team
+              as I am heads-down shipping. These days I write most of my code
+              with AI agents, on a system I designed where the tests, not the
+              agent, decide what ships.
             </p>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <a href={site.resume} className={primaryButton}>
-              Resume
-            </a>
           </div>
         </section>
 
         {lookingFor.intro && (
-          <section id="looking-for" className="grid scroll-mt-24 gap-4">
-            <SectionLabel>Looking for</SectionLabel>
+          <section id="next" className="grid scroll-mt-24 gap-4">
+            <SectionLabel>{lookingFor.heading}</SectionLabel>
             <p className="max-w-[64ch] text-lg leading-7 text-muted-foreground">
               {lookingFor.intro}
             </p>
@@ -103,6 +99,11 @@ export default function Home() {
               Updated{" "}
               <time dateTime={lookingFor.updated.iso}>{lookingFor.updated.label}</time>
             </p>
+            <div className="flex flex-wrap gap-3">
+              <a href={site.resume} className={primaryButton}>
+                Resume
+              </a>
+            </div>
           </section>
         )}
 

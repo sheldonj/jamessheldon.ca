@@ -15,9 +15,10 @@ export const site = {
   openToWork: "Open to new roles",
 } as const;
 
-// "Looking for" section on the homepage, which the openToWork badge links to.
+// "Next" section on the homepage (what work James wants next), which the openToWork badge links to.
 // Update `updated` whenever the wording changes. Set `intro` to "" to hide it.
 export const lookingFor = {
+  heading: "Next",
   intro:
     "I\u2019m looking for my next full-time role, where I can build AI products hands-on and help shape how the team builds.",
   details: [
