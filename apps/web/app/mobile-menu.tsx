@@ -94,6 +94,8 @@ export function MobileMenu() {
               <a href={`https://${site.linkedin}`} className="hover:text-primary">{site.linkedin}</a>
               <br />
               <a href={`https://${site.github}`} className="hover:text-primary">{site.github}</a>
+              <br />
+              <a href={`https://${site.contra}`} className="hover:text-primary">{site.contra}</a>
             </address>
             <div className="font-mono text-[13px] text-muted-foreground">
               <ThemeToggle />

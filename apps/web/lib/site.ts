@@ -9,6 +9,7 @@ export const site = {
   email: "sheldonj@gmail.com",
   github: "github.com/sheldonj",
   linkedin: "linkedin.com/in/jamessheldon",
+  contra: "contra.com/james_sheldon",
   resume: "/resume",
   calendly: "https://calendly.com/james_sheldon/30min",
   // Job-search status badge (app/open-to-work.tsx). Set to "" to hide it.

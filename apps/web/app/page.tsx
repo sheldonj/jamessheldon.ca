@@ -133,6 +133,9 @@ export default function Home() {
             <a href={`https://${site.github}`} className={outlineButton}>
               GitHub
             </a>
+            <a href={`https://${site.contra}`} className={outlineButton}>
+              Contra
+            </a>
           </div>
         </section>
       </main>
