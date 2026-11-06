@@ -150,6 +150,10 @@
 @starting-style { .sheet[open] { opacity: 0; translate: 0 12px; } }
 @media (prefers-reduced-motion: reduce) { .sheet { transition: none; } }
 
+/* Smooth scrolling for in-page links like the open-to-work badge. Next.js
+   turns it off during page changes (data-scroll-behavior on <html>). */
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
 /* Scrollbars: thin, teal-tinted thumb on a clear track. */
 html {
   scrollbar-width: thin;
