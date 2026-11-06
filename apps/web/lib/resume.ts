@@ -20,17 +20,21 @@ export type EarlierRole = { company: string; title: string; summary: string };
 
 export const resume = {
   name: { first: "James", last: "Sheldon" },
-  headline: "Senior full-stack engineer · Founding engineer & CTO",
+  headline: "Founding engineer & CTO · Full-stack TypeScript · AI products",
   contact: {
-    location: "Calgary, AB · Remote",
+    location: "Calgary, Canada · Remote",
     email: "sheldonj@gmail.com",
     linkedin: "linkedin.com/in/jamessheldon",
     github: "github.com/sheldonj",
     site: "jamessheldon.ca",
   },
   summary:
-    "I'm a full-stack engineer with 20+ years of building web products, most recently as founding engineer and CTO at Cashew Research, where I built a generative AI platform for market research. I work across TypeScript, React, Next.js, Node.js, GraphQL, and PostgreSQL, and I'm as comfortable leading a team as I am shipping features myself. Before Cashew, I built search and discovery at Contra and led technical work for clients like Nissan at Critical Mass.",
+    "Founding engineer and CTO who builds AI products end to end. Most recently I built Cashew Research's generative AI platform for market research and led its engineering team. I work across TypeScript, React, Next.js, Node.js, GraphQL, and PostgreSQL, and I'm as comfortable setting technical direction as I am shipping features myself. Before Cashew, I built search and discovery at Contra and led technical work for clients like Nissan at Critical Mass.",
   skills: [
+    {
+      label: "Leadership",
+      items: "technical strategy, architecture, hiring, mentoring",
+    },
     { label: "Front-end", items: "TypeScript, JavaScript, React, Next.js" },
     { label: "Back-end", items: "Node.js, GraphQL, tRPC, Temporal" },
     {
@@ -46,11 +50,6 @@ export const resume = {
       label: "AI-assisted development",
       items: "Claude Code, agent-based workflows",
     },
-    {
-      label: "Leadership",
-      items:
-        "hiring, mentoring, architecture decisions, client and vendor consultation",
-    },
   ],
   experience: [
     {
@@ -59,12 +58,12 @@ export const resume = {
       title: "Chief Technology Officer (Founding Engineer)",
       location: "Remote (Calgary)",
       bullets: [
-        "Built a generative AI platform for market research that generated targeted survey questions, analyzed research data, and turned results into actionable insights.",
+        "Built a generative AI platform for market research that wrote targeted survey questions, analyzed responses, and summarized the findings.",
         "Designed a methodology selection engine that recommended research approaches based on a study's goals.",
-        "Built the platform on Next.js, tRPC, PostgreSQL, and Temporal in a monorepo.",
-        "Co-authored most of the platform's code with Claude Code on an agent system I designed, with mutation testing as the review bar.",
-        "Co-owned, approved, and operated the Terraform and CI; the platform engineer built most of it.",
-        "Led the engineering team and instituted biweekly 1:1s.",
+        "Chose and built the architecture: a Next.js and tRPC monorepo on PostgreSQL, with Temporal for long-running workflows.",
+        "Designed the agent-based development system we built the platform with (Claude Code), using mutation testing as the quality gate for agent-written code.",
+        "Owned infrastructure and delivery (Terraform, CI/CD), setting direction with our platform engineer.",
+        "Led the engineering team, setting its technical direction, review standards, and delivery process.",
       ],
     },
     {
@@ -73,9 +72,8 @@ export const resume = {
       title: "Senior Fullstack Engineer",
       location: "Remote",
       bullets: [
-        "Designed and built the search and discovery feature at the core of Contra's talent discovery experience.",
-        "Led teams through projects central to the product across Search & Discovery and Jobs.",
-        "Turned product requirements into tested, well-structured code across the stack, often on tight deadlines.",
+        "Designed and built search and discovery, the core of how clients find talent on Contra.",
+        "Led the Search & Discovery and Jobs teams through core product projects, from design to production.",
         "Mentored teammates while working as both an individual contributor and team lead.",
       ],
     },
@@ -83,12 +81,12 @@ export const resume = {
       company: "Critical Mass",
       dates: "Jan 2014 – Apr 2021",
       title: "Tech Director, Tech Lead, Senior Developer",
-      location: "Calgary, AB",
+      location: "Calgary, Canada",
       bullets: [
         "Set departmental practices and development standards with fellow tech directors and leads.",
         "Hired, mentored, and staffed developers, and supported their career development at the department level.",
         "Guided architecture decisions with project developers and leads, and ran technical consultations with clients and third-party vendors.",
-        "Delivered Nissan/Infiniti Next Gen Shopping Tools, the LodgeLink platform rebuild, Nissan Dealer Inventory, the Nissan mobile rebuild, and a series of campaign vehicle configurators.",
+        "Delivered Nissan and Infiniti's next-gen shopping tools and dealer inventory, the LodgeLink platform rebuild, the Nissan mobile rebuild, and a series of campaign vehicle configurators.",
       ],
     },
   ] satisfies Role[],
@@ -97,13 +95,13 @@ export const resume = {
       company: "Sajak & Farki",
       title: "Front-end Developer",
       summary:
-        "Built JavaScript admin dashboards, social campaigns, and Facebook apps; helped set build, development, and QA standards.",
+        "Built JavaScript admin dashboards and social campaigns; helped set build, development, and QA standards.",
     },
     {
       company: "Valtech (formerly NLC)",
       title: "Developer",
       summary:
-        "Built the front end of a SharePoint 2010 performance-indicator dashboard with an agile team across North America.",
+        "Built the front end of a performance-indicator dashboard with an agile team across North America.",
     },
     {
       company: "Bryan Mills Iradesso",
@@ -115,7 +113,7 @@ export const resume = {
       company: "ZGM Modern Marketing Partners",
       title: "Lead Web Developer",
       summary:
-        "Led a small team and built a custom CMS on .NET 4 and ASP.NET MVC with Twitter, Facebook, Google Maps, OpenID, Chase, and Moneris integrations.",
+        "Led a small team and built a custom .NET CMS with social, mapping, and payment integrations.",
     },
     {
       company: "Sprung Instant Structures",
@@ -133,7 +131,7 @@ export const resume = {
 } as const;
 
 /** Bump when the resume content changes (feeds the sitemap and the page's JSON-LD). */
-export const resumeUpdated = "2026-10-02";
+export const resumeUpdated = "2026-11-06";
 
 export const resumeFiles = {
   pdf: "/james-sheldon-resume.pdf",
