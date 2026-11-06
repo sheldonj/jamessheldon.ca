@@ -15,6 +15,21 @@ export const site = {
   openToWork: "Open to new roles",
 } as const;
 
+// "Looking for" section on the homepage, which the openToWork badge links to.
+// Update `updated` whenever the wording changes. Set `intro` to "" to hide it.
+export const lookingFor = {
+  intro:
+    "I\u2019m looking for my next full-time role, where I can build AI products hands-on and help shape how the team builds.",
+  details: [
+    { label: "Role", value: "Staff or principal engineer, founding engineer, or head of engineering" },
+    { label: "Company", value: "An early or growth-stage product company building with AI" },
+    { label: "Setup", value: "Remote from Calgary. Open to hybrid in Calgary" },
+    { label: "Work", value: "Full-time. Open to contract or fractional CTO work" },
+    { label: "Start", value: "Available now" },
+  ],
+  updated: { iso: "2026-11", label: "November 2026" },
+} as const;
+
 // Links in the header and the menu sheet.
 export const navLinks = [
   { href: "/#now", label: "Now" },
