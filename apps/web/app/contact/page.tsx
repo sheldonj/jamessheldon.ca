@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { openGraph, twitter } from "../../lib/metadata";
 import { site } from "../../lib/site";
 import { CalendlyEmbed } from "./calendly-embed";
+import { CopyEmail } from "./copy-email";
 
 const title = `Contact · ${site.name}`;
-const description = `Book a 30-minute call with ${site.name}, or reach him by email, LinkedIn or GitHub.`;
+const description = `Book a 30-minute call with ${site.name}, or reach him by email, LinkedIn, GitHub or Contra.`;
 
 export const metadata: Metadata = {
   title,
@@ -34,7 +35,7 @@ export default function ContactPage() {
         Contact
       </h1>
 
-      <section id="book" className="grid scroll-mt-24 gap-4">
+      <section id="book" className="grid scroll-mt-24 grid-cols-[minmax(0,1fr)] gap-4">
         <SectionLabel>Book a call</SectionLabel>
         <p className="max-w-[64ch] text-lg leading-7 text-muted-foreground">
           A 30-minute call to get to know each other. Good for recruiters,
@@ -54,18 +55,22 @@ export default function ContactPage() {
       <section className="grid gap-4">
         <SectionLabel>Email and elsewhere</SectionLabel>
         <p className="max-w-[64ch] leading-6 text-muted-foreground">
-          Email is the quickest way to reach me. I&rsquo;m based in Calgary and
-          work remotely.
+          Email is the quickest way to reach me. A line on the role and the
+          team is plenty. I&rsquo;m based in Calgary and work remotely.
         </p>
         <div className="flex flex-wrap gap-3">
           <a href={`mailto:${site.email}`} className={outlineButton}>
             {site.email}
           </a>
+          <CopyEmail className={outlineButton} />
           <a href={`https://${site.linkedin}`} className={outlineButton}>
             LinkedIn
           </a>
           <a href={`https://${site.github}`} className={outlineButton}>
             GitHub
+          </a>
+          <a href={`https://${site.contra}`} className={outlineButton}>
+            Contra
           </a>
         </div>
       </section>
