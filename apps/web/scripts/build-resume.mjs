@@ -151,7 +151,7 @@ function buildDocx() {
             {
               level: 0,
               format: LevelFormat.BULLET,
-              text: "+",
+              text: "•",
               alignment: AlignmentType.LEFT,
               style: {
                 paragraph: { indent: { left: IND + 360, hanging: 240 } },
