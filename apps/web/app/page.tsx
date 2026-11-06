@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { site } from "../lib/site";
+import { lookingFor, site } from "../lib/site";
 import Link from "next/link";
 import { person, website } from "../lib/structured-data";
 import headshot from "../public/james-sheldon.jpg";
@@ -82,6 +82,29 @@ export default function Home() {
             </a>
           </div>
         </section>
+
+        {lookingFor.intro && (
+          <section id="looking-for" className="grid scroll-mt-24 gap-4">
+            <SectionLabel>Looking for</SectionLabel>
+            <p className="max-w-[64ch] text-lg leading-7 text-muted-foreground">
+              {lookingFor.intro}
+            </p>
+            <dl className="grid max-w-[64ch] gap-x-6 gap-y-2 sm:grid-cols-[auto_1fr]">
+              {lookingFor.details.map(({ label, value }) => (
+                <div key={label} className="contents">
+                  <dt className="pt-0.5 font-mono text-xs font-semibold uppercase tracking-[.05em] text-foreground sm:pt-1">
+                    {label}
+                  </dt>
+                  <dd className="mb-2 leading-6 text-muted-foreground sm:mb-0">{value}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="font-mono text-xs text-muted-foreground">
+              Updated{" "}
+              <time dateTime={lookingFor.updated.iso}>{lookingFor.updated.label}</time>
+            </p>
+          </section>
+        )}
 
         <section id="contact" className="grid scroll-mt-24 gap-4">
           <SectionLabel>

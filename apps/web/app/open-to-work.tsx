@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { site } from "../lib/site";
 
-// "Open to new roles" status, linking to /contact. From xl up it sits fixed in
+// "Open to new roles" status, linking to the homepage "Looking for" section. From xl up it sits fixed in
 // the bottom-right corner, where the page margin is wide enough that it never
 // covers text. Below xl it shows inline in the location line instead. Hidden
 // on /contact itself, and when printing. Turn it off with `openToWork` in
@@ -24,7 +24,7 @@ export function OpenToWork({ placement }: { placement: "corner" | "inline" }) {
     return (
       <span className="xl:hidden print:hidden">
         {" "}·{" "}
-        <Link href="/contact" className="inline-flex items-center gap-1.5 text-primary hover:underline">
+        <Link href="/#looking-for" className="inline-flex items-center gap-1.5 text-primary hover:underline">
           {dot}
           {site.openToWork}
         </Link>
@@ -34,7 +34,7 @@ export function OpenToWork({ placement }: { placement: "corner" | "inline" }) {
 
   return (
     <Link
-      href="/contact"
+      href="/#looking-for"
       className="fixed right-6 bottom-6 z-30 hidden items-center gap-2 rounded-lg border border-border bg-background/90 px-3 py-2 font-mono text-[12px] leading-none text-muted-foreground backdrop-blur-sm hover:border-primary hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring xl:inline-flex print:hidden"
     >
       {dot}
