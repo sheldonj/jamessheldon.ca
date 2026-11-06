@@ -1,3 +1,5 @@
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import {
   Atkinson_Hyperlegible_Mono,
@@ -65,6 +67,8 @@ export default function RootLayout({
           <SiteFooter />
         </div>
         <OpenToWork placement="corner" />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
